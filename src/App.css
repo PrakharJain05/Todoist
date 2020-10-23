@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+:root {
+  --primaryColor: #db4c3f;
+}
+
+/* Header */
+
+.header {
+  height: 44px;
+  width: 100vw;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background: var(--primaryColor);
+  display: flex;
+  justify-content: space-between;
+  padding-left: 42px;
+  padding-right: 42px;
+}
+.header__left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__left div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e26559;
+  padding: 4px;
+  border-radius: 6px;
+}
+.header__left span {
+  margin-right: 12px;
+  cursor: pointer;
+}
+.header__left input {
+  border: none;
+  width: 150px;
+  background-color: #e26559;
+  padding: 4px;
+}
+.header__left input:focus {
+  outline: none;
+  background-color: white;
+  border-radius: 4px;
+}
+.header__left input::placeholder {
+  color: white;
+}
+.header__searchBar:focus-within {
+  background-color: white;
+}
+.header__searchBar:focus-within span {
+  display: none;
+}
+.header__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__right span {
+  margin-left: 36px;
+  cursor: pointer;
+}
+
+/* Sidebar */
+
+.sidebar {
+  height: calc(100vh - 44px);
+  width: 300px;
+  position: fixed;
+  top: 44px;
+  left: 0;
+  padding-left: 35px;
+  padding-top: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fafafa;
+}
+.sidebar li {
+  list-style: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sidebar li span {
+  padding: 0 6px;
+  cursor: pointer;
+}
+/* Main Content */
+
+.main__content {
+  height: calc(100vh - 44px);
+  width: calc(100vw - 300px);
+  position: fixed;
+  top: 44px;
+  left: 300px;
+  padding-top: 30px;
+  padding-left: 55px;
+  padding-right: 55px;
+}
+.main__content li {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
+}
+.main__content li input {
+  border: none;
+  outline: 0;
+  border-bottom: 0.1px solid rgb(233, 233, 233);
+}
+.main__content__header {
+  margin-bottom: 20px;
+}
+.main__content--addTask {
+  display: flex;
+  font-size: 13px;
+  line-height: 17px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  background-color: var(--primaryColor);
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  margin: 0 10px;
+}
+.main__content--addTask span {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: 0 2px;
+}
+/* Individual Tasks */
+
+.individual__task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 0.1px solid rgb(233, 233, 233);
+}
+.individual__task--content {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.individual__task--content span {
+  margin-right: 12px;
+  padding: 2px;
+  cursor: pointer;
+}
+.individual__task--content input {
+  border: none;
+  width: 100%;
+}
+.individual__task--content input:focus {
+  outline: 0;
+}
+.individual__task--operation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.individual__task--operation span {
+  margin-left: 12px;
+  cursor: pointer;
+}
+.individual__task__editModal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100vw - 300px);
+}
