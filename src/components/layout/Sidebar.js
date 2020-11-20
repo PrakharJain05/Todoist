@@ -1,8 +1,8 @@
 import React from "react";
 import { CgInbox } from "react-icons/cg";
-export const Sidebar = () => {
+export const Sidebar = ({ isSidebar }) => {
   return (
-    <div className="sidebar">
+    <div className={isSidebar ? "sidebar active" : "sidebar"}>
       <div className="sidebar__fixedComp">
         <div>
           <ul>

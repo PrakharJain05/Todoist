@@ -1,41 +1,41 @@
-import React from "react";
-import {
-  FiHome,
-  FiMenu,
-  FiSearch,
-  FiPlus,
-  FiBell,
-  FiSettings,
-} from "react-icons/fi";
+import React, { useEffect, useState } from "react";
+import { FiMenu, FiSearch, FiPlus } from "react-icons/fi";
+import { Sidebar } from "./Sidebar";
 
 export const Header = () => {
+  const [isSidebar, setIsSidebar] = useState(true);
+
+  useEffect(() => {
+    let frameWidth = window.innerWidth;
+    if (frameWidth <= 738) {
+      setIsSidebar(false);
+    }
+  }, []);
+  const handleSidebar = () => {
+    setIsSidebar(!isSidebar);
+  };
+
   return (
-    <div className="header">
-      <div className="header__left">
-        <span>
-          <FiMenu color="white" size="20" />
-        </span>
-        <span>
-          <FiHome color="white" size="20" />
-        </span>
-        <div className="header__searchBar">
-          <span>
-            <FiSearch color="white" size="20" />
+    <>
+      <div className="header">
+        <div className="header__left">
+          <span onClick={() => handleSidebar()}>
+            <FiMenu color="white" size="20" />
           </span>
-          <input type="text" placeholder="Find" />
+          <div className="header__searchBar">
+            <span>
+              <FiSearch color="white" size="20" />
+            </span>
+            <input type="text" placeholder="Find" />
+          </div>
+        </div>
+        <div className="header__right">
+          <span onClick={() => document.getElementById("taskInput").focus()}>
+            <FiPlus color="white" size="24" />
+          </span>
         </div>
       </div>
-      <div className="header__right">
-        <span>
-          <FiPlus color="white" size="24" />
-        </span>
-        <span>
-          <FiBell color="white" fill="white" size="20" />
-        </span>
-        <span>
-          <FiSettings color="white" size="20" />
-        </span>
-      </div>
-    </div>
+      <Sidebar isSidebar={isSidebar} />
+    </>
   );
 };

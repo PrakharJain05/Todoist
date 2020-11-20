@@ -36,6 +36,7 @@ export const MainContent = () => {
       <ul>
         <li>
           <input
+            id="taskInput"
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
             type="text"

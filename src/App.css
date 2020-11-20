@@ -21,6 +21,7 @@ body {
   align-items: center;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 100;
   background: var(--primaryColor);
   display: flex;
@@ -82,12 +83,17 @@ body {
   width: 300px;
   position: fixed;
   top: 44px;
-  left: 0;
+  left: -100%;
+  transition: 850ms ease;
   padding-left: 35px;
   padding-top: 30px;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #fafafa;
+}
+.sidebar.active {
+  left: 0;
+  transition: 350ms ease;
 }
 .sidebar li {
   list-style: none;
@@ -160,7 +166,7 @@ body {
 .individual__task--content {
   display: flex;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .individual__task--content span {
@@ -170,7 +176,9 @@ body {
 }
 .individual__task--content input {
   border: none;
+  border-bottom: 1px solid grey;
   width: 100%;
+  padding-bottom: 4px;
 }
 .individual__task--content input:focus {
   outline: 0;
@@ -189,4 +197,23 @@ body {
   justify-content: space-between;
   align-items: center;
   width: calc(100vw - 300px);
+}
+@media screen and (max-width: 738px) {
+  .header {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .main__content {
+    width: 100%;
+    position: absolute;
+    top: 44px;
+    left: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .sidebar {
+    background-color: var(--primaryColor);
+    width: 180px;
+    z-index: 100;
+  }
 }

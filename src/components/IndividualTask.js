@@ -5,12 +5,15 @@ import firebase from "../firebase";
 
 export const IndividualTask = ({ task }) => {
   const [input, setInput] = useState(task.task);
+  const [isEditable, setIsEditable] = useState(false);
 
   const deleteTask = () => {
     firebase.firestore().collection("tasks").doc(task.docId).delete();
   };
   const editTask = () => {
-    document.getElementById(task.docId).focus();
+    if (!isEditable) {
+      setIsEditable(true);
+    }
   };
 
   const handleUpdate = (e) => {
@@ -18,19 +21,20 @@ export const IndividualTask = ({ task }) => {
       firebase.firestore().collection("tasks").doc(task.docId).update({
         task: input,
       });
+      setIsEditable(false);
     }
   };
-  const handleBlur = () => {
+  const handleSubmit = () => {
     firebase.firestore().collection("tasks").doc(task.docId).update({
       task: input,
     });
+    setIsEditable(false);
   };
+
   const handleCheck = () => {
-    if (task.complete === false) {
-      firebase.firestore().collection("tasks").doc(task.docId).update({
-        complete: true,
-      });
-    }
+    firebase.firestore().collection("tasks").doc(task.docId).update({
+      complete: !task.complete,
+    });
   };
 
   return (
@@ -39,25 +43,47 @@ export const IndividualTask = ({ task }) => {
         <span onClick={() => handleCheck()}>
           <BsCircle />
         </span>
-        <input
-          rows={1}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={task.task}
-          type="text"
-          onBlur={() => handleBlur()}
-          onKeyPress={(e) => handleUpdate(e)}
-          id={task.docId}
-        />
+        {isEditable ? (
+          <input
+            rows={1}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={task.task}
+            type="text"
+            onKeyPress={(e) => handleUpdate(e)}
+            id={task.docId}
+          />
+        ) : task.complete ? (
+          <p style={{ textDecorationLine: "line-through" }}>{task.task}</p>
+        ) : (
+          <p>{task.task}</p>
+        )}
       </div>
-      <div className="individual__task--operation">
-        <span onClick={() => editTask()}>
-          <MdEdit size="18" />
-        </span>
-        <span onClick={() => deleteTask()}>
-          <MdDelete size="18" />
-        </span>
-      </div>
+      {isEditable ? (
+        <button
+          onClick={() => handleSubmit()}
+          style={{
+            color: "white",
+            backgroundColor: "#db4c3f",
+            outline: "none",
+            padding: "3px 6px",
+            border: "none",
+            borderRadius: "2px",
+            margin: "1px",
+          }}
+        >
+          Save
+        </button>
+      ) : (
+        <div className="individual__task--operation">
+          <span onClick={() => editTask()}>
+            <MdEdit size="18" />
+          </span>
+          <span onClick={() => deleteTask()}>
+            <MdDelete size="18" />
+          </span>
+        </div>
+      )}
     </div>
   );
 };
