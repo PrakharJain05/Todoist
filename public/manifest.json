@@ -1,0 +1,21 @@
+{
+  "short_name": "todoist",
+  "name": "todoist",
+  "display": "standalone",
+  "background_color": "#e26559",
+  "theme_color": "#e26559",
+  "start_url": ".",
+  "icons": [
+    {
+      "src": "todoistLogo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "todoistLogo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
