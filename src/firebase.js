@@ -1,16 +1,18 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
+console.log(process.env);
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC8lCK33rHpyukFviNIjb_cKkRzme0EW6g",
-  authDomain: "todoist-d346b.firebaseapp.com",
-  databaseURL: "https://todoist-d346b.firebaseio.com",
-  projectId: "todoist-d346b",
-  storageBucket: "todoist-d346b.appspot.com",
-  messagingSenderId: "213064210983",
-  appId: "1:213064210983:web:73255e166299b5631ccc02",
+  apiKey: process.env.REACT_APP_APP_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
+firebase.firestore();
 
 export default firebase;
